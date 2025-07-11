@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.sebas.todo.ui.MainViewController">
+    
+    <top>
+        <Button fx:id="btnNew" text="Nueva Tarea" BorderPane.Alignment="CENTER"/>
+    </top>
+    
+    <center>
+        <ListView fx:id="taskList"/>
+    </center>
+
+</BorderPane>
