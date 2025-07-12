@@ -15,9 +15,13 @@
                 promptText="Escribe una tarea"
                 HBox.hgrow="ALWAYS"
                 onAction="#handleAddTask"/>
-                <Button fx:id="btnNew"
+            <Button fx:id="btnNew"
                 text="Agregar"
-                onAction="#handleAddTask"/>   
+                onAction="#handleAddTask"/>
+            <Button fx:id="btnDeleteAll"
+                text="Eliminar todo"
+                onAction="#handleDeleteAllTasks"
+            />   
         </HBox>
     </top>
     

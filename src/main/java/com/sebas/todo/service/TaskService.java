@@ -2,6 +2,7 @@
 package com.sebas.todo.service;
 
 import com.sebas.todo.model.Task;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -27,6 +28,10 @@ public class TaskService {
         List<Task> all=repo.findAll();
         all.removeIf(t->t.getId().equals(task.getId()));
         repo.saveAll(all);
+    }
+    
+    public void removeAll(){
+        repo.saveAll(new ArrayList<>());
     }
     
     public void update(Task updated){
