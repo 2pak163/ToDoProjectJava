@@ -1,0 +1,103 @@
+.root{
+    -fx-font-family: "Segoe UI",sans-serif;
+    -fx-background-color: #f8f9f4;
+    -fx-padding:10;
+}
+
+HBox{
+    -fx-spacing:10;
+}
+
+.text-field{
+    -fx-background-color:white;
+    -fx-background-insets:0;
+    -fx-background-radius:6;
+    -fx-border-radius:6;
+    -fx-border-color:#DDD;
+    -fx-border-width:1;
+    -fx-padding:6 8;
+}
+
+.text-field .text{
+    -fx-prompt-text-fill:#AAA;
+}
+
+.button{
+    -fx-cursor:hand;
+    -fx-text-fill:#333;
+    -fx-font-size:13px;
+    -fx-background-radius:6;
+    -fx-padding:6 12;
+    -fx-background-color:transparent;
+    -fx-border-color:#CCC;
+    -fx-border-radius:5;
+    -fx-border-width:1;
+}
+
+.button:hover{
+    -fx-background-color:#EEE;
+}
+
+.btn-primary {
+  -fx-background-color:#4A90E2;
+  -fx-text-fill: white;
+  -fx-border-color:transparent;
+}
+
+.btn-delete:hover{
+    -fx-background-color:red;
+}
+
+.btn-primary:hover{
+    -fx-background-color:#357ABD;
+}
+
+.icon-button{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-padding:4;
+}
+
+.icon-button:hover{
+    -fx-background-color:rgba(0,0,0,0.05);
+}
+
+.radio-button{
+    -fx-padding:4 8;
+}
+
+.radio-button:selected{
+    -fx-background-color:#DDD;
+    -fx-background-radius:4;
+}
+
+.list-view{
+    -fx-background-color:white;
+    -fx-border-color:#DDD;
+    -fx-border-radius:6;
+    -fx-background-radius:6;
+}
+
+.list-view .list-cell{
+    -fx-padding:8;
+    -fx-border-color:transparent;
+}
+
+.list-view .checkbox{
+    -fx-padding: 0 8 0 0;
+    -fx-font-size: 14px;
+}
+
+.button .label{
+    -fx-font-size: 14px;
+    -fx-padding:0;
+}
+
+.toggle-button {
+  -fx-background-color: transparent;
+  -fx-cursor: hand;
+  -fx-padding: 4;
+}
+.toggle-button:hover {
+  -fx-background-color: rgba(0,0,0,0.05);
+}

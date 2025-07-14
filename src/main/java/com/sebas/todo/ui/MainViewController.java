@@ -11,11 +11,26 @@ import javafx.collections.transformation.FilteredList;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.material2.Material2AL;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import javafx.scene.paint.Color;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import java.util.List;
 
 public class MainViewController {
-   
+    
+    @FXML private ToggleButton toggleDark;
+    private static final String LIGHT_CSS = "/style.css";
+    private static final String DARK_CSS  = "/dark.css";
+    
+    private final FontIcon iconSun   = new FontIcon(FontAwesomeSolid.SUN);
+    private final FontIcon iconMoon  = new FontIcon(FontAwesomeSolid.MOON);
+    
+    
     @FXML private RadioButton rbAll;
     @FXML private RadioButton rbPending;
     @FXML private RadioButton rbDone;
@@ -47,6 +62,10 @@ public class MainViewController {
         rbPending.setToggleGroup(filterGroup);
         rbDone.setToggleGroup(filterGroup);
         
+        iconSun.setIconSize(18);
+        iconMoon.setIconSize(18);
+        toggleDark.setGraphic(iconMoon);
+        
         taskList.setItems(filteredTasks);
         filterGroup.selectedToggleProperty().addListener((obs,oldToggle,newToggle)->updateFilter());
         txtSearch.textProperty().addListener((obs,old,nw)-> updateFilter());
@@ -58,17 +77,23 @@ public class MainViewController {
     
         taskList.setCellFactory(lv->new ListCell<>(){
             
-            private final Button btnDeleteCell = new Button("🗑");
-            private final Button btnEdit= new Button("Editar️");
+            private final FontIcon editIcon   = new FontIcon(Material2AL.EDIT);
+            private final FontIcon deleteIcon = new FontIcon(Material2AL.DELETE);
+            private final Button btnDeleteCell = new Button("",deleteIcon);
+            private final Button btnEdit= new Button("",editIcon);
             private final CheckBox chk = new CheckBox();
-            private final HBox hbox = new HBox(8, chk,btnEdit, btnDeleteCell);
+            private final Region spacer = new Region();
+            private final HBox hbox = new HBox(8, chk,spacer,btnEdit, btnDeleteCell);
             
                 {
-                    
+                    HBox.setHgrow(spacer,Priority.ALWAYS);
                     hbox.setAlignment(Pos.CENTER_LEFT);
-                    chk.setStyle("-fx-font-size= 12px;");
-                    btnDeleteCell.setStyle("-fx-font-size:10px; -fx-padding: 2;");
-                    btnEdit.setStyle("-fx-font-size:10px; -fx-padding: 2;");
+                    
+                    editIcon.setIconSize(18);
+                    deleteIcon.setIconSize(18);
+                    chk.setStyle("-fx-font-size= 13px;");
+                    btnDeleteCell.getStyleClass().add("icon-button");
+                    btnEdit.getStyleClass().add("icon-button");
                     
                     chk.setOnAction(evt->{
                         Task item=getItem();
@@ -81,8 +106,8 @@ public class MainViewController {
                     
                     btnDeleteCell.setOnAction(evt->{
                         Task item=getItem();
-                        String msg= String.format("¿Eliminar la tarea \"%s\"?",item.getDescription());
-                        if(item != null && confirm(msg)){
+                        if(item != null && confirm(String.format("¿Eliminar la tarea \"%s\"?",
+                                item.getDescription()))){
                             service.remove(item);
                             masterTasks.remove(item);
                         }
@@ -162,7 +187,7 @@ public class MainViewController {
     
     @FXML
     public void handleDeleteAllTasks(){  
-        if(confirm("¿Eliminar todas las tareas?")){
+        if(confirm("¿Estás seguro que quiere eliminar todas las tareas?")){
             service.removeAll();
             masterTasks.clear();
             updateFilter();
@@ -174,5 +199,24 @@ public class MainViewController {
         a.setHeaderText(null);
         return a.showAndWait().filter(b->b==ButtonType.OK).isPresent();
     };
+    
+    @FXML
+    public void onToggleDarkMode() {
+       
+        Scene scene = txtTask.getScene();
+        if (toggleDark.isSelected()) {
+            scene.getStylesheets().setAll(
+                getClass().getResource(DARK_CSS).toExternalForm()
+            );
+            iconSun.setIconColor(Color.WHITE); 
+            toggleDark.setGraphic(iconSun);  
+        } else {
+            scene.getStylesheets().setAll(
+                getClass().getResource(LIGHT_CSS).toExternalForm()
+            );
+            iconMoon.setIconColor(Color.BLACK);
+            toggleDark.setGraphic(iconMoon);
+        }
+    }
     
 }
