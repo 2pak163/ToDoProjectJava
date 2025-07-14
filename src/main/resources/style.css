@@ -66,6 +66,10 @@ HBox{
     -fx-padding:4 8;
 }
 
+.radio-button:hover{
+    -fx-cursor:hand;
+}
+
 .radio-button:selected{
     -fx-background-color:#DDD;
     -fx-background-radius:4;
@@ -84,6 +88,7 @@ HBox{
 }
 
 .list-view .checkbox{
+    -fx-cursor:hand;
     -fx-padding: 0 8 0 0;
     -fx-font-size: 14px;
 }
@@ -91,6 +96,14 @@ HBox{
 .button .label{
     -fx-font-size: 14px;
     -fx-padding:0;
+}
+
+.edit-icon:hover{
+    -fx-background-color:yellow;
+}
+
+.delete-icon:hover{
+    -fx-background-color:red;
 }
 
 .toggle-button {

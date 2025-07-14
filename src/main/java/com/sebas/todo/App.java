@@ -16,10 +16,13 @@ public class App extends Application {
                 getClass().getResource("/com/sebas/todo/ui/MainView.fxml")
         );
         Scene scene=new Scene(root);
-        Image icon = new Image(
-            getClass().getResourceAsStream("/icons/app-icon.png")
+        stage.getIcons().addAll(
+            new Image(getClass().getResourceAsStream("/icons/icon-16.png")),
+            new Image(getClass().getResourceAsStream("/icons/icon-32.png")),
+            new Image(getClass().getResourceAsStream("/icons/icon-48.png")),
+            new Image(getClass().getResourceAsStream("/icons/icon-64.png")),
+            new Image(getClass().getResourceAsStream("/icons/icon-256.png"))
         );
-        stage.getIcons().add(icon);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setTitle("To-Do-List");
         stage.setScene(scene);

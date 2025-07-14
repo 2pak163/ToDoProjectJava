@@ -19,9 +19,13 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.List;
 
 public class MainViewController {
+    
+    @FXML private ImageView logoView;
     
     @FXML private ToggleButton toggleDark;
     private static final String LIGHT_CSS = "/style.css";
@@ -62,6 +66,9 @@ public class MainViewController {
         rbPending.setToggleGroup(filterGroup);
         rbDone.setToggleGroup(filterGroup);
         
+        Image logo = new Image(getClass().getResourceAsStream("/icons/logo.png"));
+        logoView.setImage(logo);
+        
         iconSun.setIconSize(18);
         iconMoon.setIconSize(18);
         toggleDark.setGraphic(iconMoon);
@@ -91,9 +98,11 @@ public class MainViewController {
                     
                     editIcon.setIconSize(18);
                     deleteIcon.setIconSize(18);
+                    editIcon.getStyleClass().add("icon-white");
+                    deleteIcon.getStyleClass().add("icon-white");
                     chk.setStyle("-fx-font-size= 13px;");
-                    btnDeleteCell.getStyleClass().add("icon-button");
-                    btnEdit.getStyleClass().add("icon-button");
+                    btnDeleteCell.getStyleClass().addAll("icon-button","delete-icon");
+                    btnEdit.getStyleClass().addAll("icon-button","edit-icon");
                     
                     chk.setOnAction(evt->{
                         Task item=getItem();
